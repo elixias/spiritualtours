@@ -51,7 +51,7 @@ async function extractDetails(pageURL){
 	console.log(priceAll);
 	return `"${title}","${loc}","${specloc}","${people}","${dur}","${lowest}","${priceAll}"\r\n`;
 	}catch (e){
-		return 'ERR,ERR,ERR,ERR,ERR,ERR,ERR';
+		return 'ERR,ERR,ERR,ERR,ERR,ERR,ERR\r\n';
 	}
 }
 
