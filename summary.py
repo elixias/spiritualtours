@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 
-data = pd.read_csv("data.txt","r",delimiter="\t",usecols=["Country","Participants","Duration","Lowest"])
+data = pd.read_csv("data.txt","r",delimiter=",",names=['Title','Location','Country','Participants','Duration','Lowest','Rooms'],usecols=["Country","Participants","Duration","Lowest"])
 df = data[data['Country']!='ERR']
 
 data.info()
