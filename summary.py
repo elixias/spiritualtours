@@ -1,8 +1,22 @@
+#split the packages
+data = pd.read_csv("data_tsv_raw.txt","r",delimiter=",",names=['Title','Location','Country','Participants','Duration','Lowest','Rooms'])
+df=data
+df2=df['Rooms'].str.split(pat="\n",expand=True)
+df=pd.concat([df,df2],axis=1)
+df=df.drop(["Rooms"],axis=1)
+df=pd.melt(df, id_vars=['Title','Location','Country','Participants','Duration','Lowest'], value_name='Rooms')
+df=df.drop(["variable"],axis=1)
+df=df[df['Rooms'].values != None]
+df=pd.concat([df,df['Rooms'].str.split(",",expand=True)],axis=1)
+df.columns = ['Title','Location','Country','Participants','Duration','Lowest','Rooms','Persons','RmType','RmLoc','RmPrice']
+#the columns variables are not impt
+
 import pandas as pd
 import numpy as np
 import re
 
-data = pd.read_csv("data.txt","r",delimiter=",",names=['Title','Location','Country','Participants','Duration','Lowest','Rooms'],usecols=["Country","Participants","Duration","Lowest"])
+data = pd.read_csv("data.txt","r",delimiter=",",names=['Title','Location','Country','Participants','Duration','Lowest','Rooms'])
+#,usecols=["Country","Participants","Duration","Lowest"]
 df = data[data['Country']!='ERR']
 
 data.info()
